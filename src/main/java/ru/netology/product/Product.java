@@ -1,5 +1,7 @@
 package ru.netology.product;
 
+import java.util.Collection;
+
 public class Product {
 
 
@@ -18,9 +20,8 @@ public class Product {
         return id;
     }
 
+
     public String getName() {
         return name;
     }
-
-
 }
