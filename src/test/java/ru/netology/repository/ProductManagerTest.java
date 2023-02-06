@@ -77,6 +77,34 @@ public class ProductManagerTest {
 
     }
 
+    @Test
+    public void shouldSearchByProductManufacturer() {
+
+        Smartphone smartphone1 = new Smartphone(21, "Samsung", 35_000, "Китай");
+
+        manager.add(smartphone1);
+
+
+        Product[] expected = {smartphone1};
+        Product[] actual = manager.searchBy("Китай");
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldSearchByProductAuthor() {
+        Book book1 = new Book(20, "Мцыри", 450, "Лермонтов М.Ю.");
+
+
+        manager.add(book1);
+
+        Product[] expected = {book1};
+        Product[] actual = manager.searchBy("Лермонтов М.Ю.");
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+
 }
 
 
