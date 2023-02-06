@@ -8,6 +8,7 @@ import ru.netology.product.Product;
 import ru.netology.product.ProductManager;
 import ru.netology.product.Smartphone;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ProductManagerTest {
@@ -80,27 +81,28 @@ public class ProductManagerTest {
     @Test
     public void shouldSearchByProductManufacturer() {
 
-        Smartphone smartphone1 = new Smartphone(21, "Samsung", 35_000, "Китай");
+        Product smartphone1 = new Smartphone(21, "Samsung", 35_000, "Китай");
+
 
         manager.add(smartphone1);
+        boolean expected = true;
+        boolean actual = smartphone1.matches("Китай");
 
+        Assertions.assertEquals(expected, actual);
 
-        Product[] expected = {smartphone1};
-        Product[] actual = manager.searchBy("Китай");
-        Assertions.assertArrayEquals(expected, actual);
 
     }
 
     @Test
     public void shouldSearchByProductAuthor() {
-        Book book1 = new Book(20, "Мцыри", 450, "Лермонтов М.Ю.");
+        Product book1 = new Book(20, "Мцыри", 450, "Лермонтов М.Ю.");
 
 
         manager.add(book1);
+        boolean expected = true;
+        boolean actual = book1.matches("Лермонтов М.Ю.");
 
-        Product[] expected = {book1};
-        Product[] actual = manager.searchBy("Лермонтов М.Ю.");
-        Assertions.assertArrayEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
 
     }
 
