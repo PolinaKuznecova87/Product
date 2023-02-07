@@ -8,6 +8,7 @@ import ru.netology.product.Product;
 import ru.netology.product.ProductManager;
 import ru.netology.product.Smartphone;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ProductManagerTest {
@@ -76,6 +77,35 @@ public class ProductManagerTest {
         Assertions.assertArrayEquals(expected, actual);
 
     }
+
+    @Test
+    public void shouldSearchByProductManufacturer() {
+
+        Product smartphone1 = new Smartphone(21, "Samsung", 35_000, "Китай");
+
+
+        manager.add(smartphone1);
+        boolean expected = true;
+        boolean actual = smartphone1.matches("Китай");
+
+        Assertions.assertEquals(expected, actual);
+
+
+    }
+
+    @Test
+    public void shouldSearchByProductAuthor() {
+        Product book1 = new Book(20, "Мцыри", 450, "Лермонтов М.Ю.");
+
+
+        manager.add(book1);
+        boolean expected = true;
+        boolean actual = book1.matches("Лермонтов М.Ю.");
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
 
 }
 
