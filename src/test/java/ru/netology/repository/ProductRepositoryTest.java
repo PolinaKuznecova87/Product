@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 
 import org.junit.jupiter.api.Test;
 import ru.netology.product.Book;
+import ru.netology.product.NotFoundException;
 import ru.netology.product.Product;
 import ru.netology.product.Smartphone;
 
@@ -73,6 +74,38 @@ public class ProductRepositoryTest {
 
     }
 
+    @Test
+    public void shouldRemoveBayId() {
+        ProductRepository repo = new ProductRepository();
+        Book book1 = new Book(21, "Война Миров", 1350, "Уэллс Г");
+        Smartphone smartphone1 = new Smartphone(22, "Xiomi", 22_000, "Китай");
+
+        repo.add(book1);
+        repo.add(smartphone1);
+
+        repo.removeByeId(21);
+
+        Product[] expected = {smartphone1};
+        Product[] actual = repo.findAll();
+        ;
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldRemoveBayIdWhichIsNot() {
+        ProductRepository repo = new ProductRepository();
+        Book book1 = new Book(23, "Азбука", 650, "Жуков Т");
+        Smartphone smartphone1 = new Smartphone(24, "Xiomi", 25_000, "Китай");
+
+        repo.add(book1);
+        repo.add(smartphone1);
+
+
+        Assertions.assertThrows(NotFoundException.class, () -> {
+            repo.removeByeId(25);
+        });
+    }
 
 }
 
